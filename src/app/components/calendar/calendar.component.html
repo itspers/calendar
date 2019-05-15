@@ -1,0 +1,15 @@
+<div class="holder" fxLayout="column" fxLayoutGap="20pt">
+  <div>
+    <h1>2019: YEAR OF BANANAS</h1>
+  </div>
+  <div fxLayout="row" fxFlex fxLayoutGap="20px">
+    <div *ngFor="let column of columns" fxFlex fxLayout="column">
+      <div *ngFor="let week of column" fxLayout="row" fxFlex>
+        <div *ngFor="let day of week" fxFlex class="day day-{{day.weekday}} month-day-{{day.monthDay}}" [class.current-year]="day.currentYear">
+          <span class="number">{{day.monthDay}}</span>
+          <h3 class="month-name" *ngIf="day.monthDay == 1">{{day.monthName}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

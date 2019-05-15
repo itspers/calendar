@@ -1,0 +1,74 @@
+.holder {
+  width: 1191pt;
+  height: 1684pt;
+  box-sizing: border-box;
+  padding: 10pt;
+}
+
+
+$gradientStart: #e8e8e8;
+$gradientEnd: #ffffff;
+$steps: 34;
+
+.day {
+  box-sizing: border-box;
+  border: 1pt solid lightgray;
+  text-align: center;
+  //padding: 20px;
+  margin: 5pt;
+  position: relative;
+  opacity: .5;
+
+  &.current-year {
+    opacity: 1;
+  }
+
+  &.day-6,&.day-5 {
+    //background: #f3f3f3 !important;
+    //margin: 10px;
+    //border: 1pt solid lightgray;
+    //border: none;
+
+    //.number {
+    //  color: black;
+    //}
+  }
+
+  &.day-5 {
+    //margin: 10px;
+    margin-left: 10pt;
+    //margin-right: 0;
+    //border-left: 2px solid lightgray;
+  }
+
+
+
+  @for $i from 0 to $steps {
+    &.month-day-#{$i} {
+      background: mix($gradientEnd, $gradientStart, percentage($i / ($steps - 1)));
+    }
+  }
+
+  &.month-day-1 {
+    border-top-left-radius: 10px;
+  }
+
+  $offset: 5pt;
+
+  .number {
+    position: absolute;
+    right: $offset;
+    top: $offset;
+    color: gray;
+    font-size: 10pt;
+  }
+
+  .month-name {
+    position: absolute;
+    left: $offset;
+    top: $offset;
+    color: #232323;
+    margin: 0;
+    font-size: 20pt;
+  }
+}
