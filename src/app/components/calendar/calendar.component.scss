@@ -3,45 +3,65 @@
   height: 1684pt;
   box-sizing: border-box;
   padding: 10pt;
+
+  .headline {
+    display: flex;
+    margin-bottom: 90pt !important;
+    margin-top: 40pt;
+    .current-year{
+      width: 50%;
+      text-align: right;
+    }
+    .next-year {
+      text-align: left;
+    }
+    .date {
+      font-size: 150pt;
+      font-weight: 300;
+      line-height: 135pt;
+    }
+    .words {
+      font-size: 100pt;
+      font-weight: 300;
+      line-height: 60pt;
+    }
+  }
 }
 
 
-$gradientStart: #e8e8e8;
+$gradientStart: #f3f3f3;
 $gradientEnd: #ffffff;
 $steps: 34;
 
 .day {
   box-sizing: border-box;
-  border: 1pt solid lightgray;
+  //border: 1pt solid lightgray;
   text-align: center;
   //padding: 20px;
-  margin: 5pt;
+  //margin: 5pt;
   position: relative;
-  opacity: .5;
+
+  overflow: hidden;
+  //opacity: .5;
 
   &.current-year {
     opacity: 1;
   }
 
+  &.day-4{
+    .number {
+      //font-size: 11pt;
+      //font-weight: 500;
+    }
+  }
+
   &.day-6,&.day-5 {
-    //background: #f3f3f3 !important;
-    //margin: 10px;
-    //border: 1pt solid lightgray;
-    //border: none;
-
-    //.number {
-    //  color: black;
-    //}
+    .number {
+      color: black;
+      font-weight: 400;
+      //font-size: 12pt;
+    }
   }
-
-  &.day-5 {
-    //margin: 10px;
-    margin-left: 10pt;
-    //margin-right: 0;
-    //border-left: 2px solid lightgray;
-  }
-
-
 
   @for $i from 0 to $steps {
     &.month-day-#{$i} {
@@ -50,7 +70,7 @@ $steps: 34;
   }
 
   &.month-day-1 {
-    border-top-left-radius: 10px;
+    //border-top-left-radius: 10px;
   }
 
   $offset: 5pt;
@@ -61,14 +81,39 @@ $steps: 34;
     top: $offset;
     color: gray;
     font-size: 10pt;
+    font-weight: 200;
   }
 
   .month-name {
-    position: absolute;
-    left: $offset;
-    top: $offset;
-    color: #232323;
+
+    left: -5pt;
+    color: #cecece8c;
     margin: 0;
-    font-size: 20pt;
+    font-size: 36pt;
+    line-height: 37pt;
+    font-weight: 500;
+  }
+
+  .month-full-name {
+    color: #636363;
+    margin: 0;
+    font-weight: 100;
+    font-size: 9pt;
+  }
+
+  .weekday-name {
+    left: -5pt;
+    color: #0000009e;
+    margin: 0;
+    font-size: 22pt;
+    line-height: 16pt;
+    font-weight: 500;
+  }
+
+  .weekday-full-name {
+    color: #636363;
+    margin: 0;
+    font-weight: 100;
+    font-size: 9pt;
   }
 }

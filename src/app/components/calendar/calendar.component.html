@@ -1,13 +1,30 @@
 <div class="holder" fxLayout="column" fxLayoutGap="20pt">
-  <div>
-    <h1>2019: YEAR OF BANANAS</h1>
+  <div class="headline">
+    <div class="current-year">
+      <div class="date">20.</div>
+      <div class="words">ninetheen</div>
+    </div>
+    <div class="next-year">
+      <div class="words">twenteen</div>
+      <div class="date">20.</div>
+    </div>
   </div>
   <div fxLayout="row" fxFlex fxLayoutGap="20px">
-    <div *ngFor="let column of columns" fxFlex fxLayout="column">
+
+    <div *ngFor="let column of columns.data" fxFlex fxLayout="column">
+
+      <div  fxLayout="row" fxFlex>
+        <div *ngFor="let day of columns.weekdays" fxFlex class="day">
+          <h3 class="weekday-name">{{day.weekdayLetter}}</h3>
+          <h3 class="weekday-full-name">{{day.weekdayName}}</h3>
+        </div>
+      </div>
+
       <div *ngFor="let week of column" fxLayout="row" fxFlex>
         <div *ngFor="let day of week" fxFlex class="day day-{{day.weekday}} month-day-{{day.monthDay}}" [class.current-year]="day.currentYear">
           <span class="number">{{day.monthDay}}</span>
           <h3 class="month-name" *ngIf="day.monthDay == 1">{{day.monthName}}</h3>
+          <h3 class="month-full-name" *ngIf="day.monthDay == 1">{{day.monthFullName}}</h3>
         </div>
       </div>
     </div>

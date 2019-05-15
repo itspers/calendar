@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,400,500,600,700,800,900');
+
 body {
-  width: 1191pt;
-  height: 1684pt;
+  width: (594*2)pt;
+  height: (841*2)pt;
   background: white;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: 'Poppins', sans-serif;
+  //font-weight: 500;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,7 +14,7 @@ body {
 
 
 html {
-  background: gray;
+  background: white;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

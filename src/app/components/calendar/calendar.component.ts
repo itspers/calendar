@@ -5,13 +5,21 @@ import * as moment from 'moment';
 export interface CalendarDate {
   date: string;
   monthName: string;
+  monthFullName: string;
   monthDay: number;
   weekday: number;
   currentYear: boolean;
 }
 
+interface Weekday {
+  weekdayLetter: string;
+  weekdayName: string;
+}
 
-
+interface Columns {
+  weekdays: Weekday[];
+  data: CalendarDate[][][];
+}
 
 @Component({
   selector: 'app-calendar',
@@ -22,7 +30,7 @@ export interface CalendarDate {
 export class CalendarComponent implements OnInit {
 
 
-  columns: CalendarDate[][][];
+  columns: Columns;
 
   constructor() { }
 
@@ -39,31 +47,23 @@ export class CalendarComponent implements OnInit {
       }
     });
 
-    const start = moment().startOf('year').startOf('week');
-    const end = moment().endOf('year').endOf('week');
+    const start = moment().startOf('month').startOf('week');
+    const end = moment().add(1, 'years').startOf('month');
 
 
     if (((end.clone().diff(start, 'days') / 7) % 2) !== 0) {
-      end.add(8, 'days');
+      // end.add(8, 'days');
     }
-
-
-
     const rows: CalendarDate[][] = [];
     let row: CalendarDate[] = [];
-
-
-
     const daysTotal = end.diff(start, 'days');
-
-    console.log(daysTotal);
-
     for (let i = 0; i < daysTotal; i++) {
       const date = start.clone().add(i, 'days');
       row.push({
         date: date.format('D.M.Y'),
         weekday: date.weekday(),
-        monthName: date.format('MMM'),
+        monthName: date.format('MMM').substring(0, 1),
+        monthFullName: date.format('MMMM'),
         monthDay: date.date(),
         currentYear: date.format('Y') === moment().format('Y')
       });
@@ -74,11 +74,18 @@ export class CalendarComponent implements OnInit {
       }
     }
 
-    // rows.push([...row]);
-
-    this.columns = this.chunk(2, rows);
-
-
+    const weekdays: Array<Weekday> = Array.apply(null, Array(7)).map(function (_, i): Weekday {
+      const weekdayName = moment(i, 'e').startOf('week').isoWeekday(i + 1).format('dddd');
+      return {
+        weekdayLetter: weekdayName.substr(0, 1),
+        weekdayName: weekdayName,
+      };
+    });
+    const columnsData: CalendarDate[][][] = this.chunk(2, rows);
+    this.columns = {
+      weekdays: weekdays,
+      data: columnsData
+    };
   }
 
 
