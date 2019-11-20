@@ -26,6 +26,31 @@
       line-height: 60pt;
     }
   }
+
+  .headline-cyrillic {
+    font-family: 'PT Sans', sans-serif;
+    display: flex;
+    margin-bottom: 90pt !important;
+    margin-top: 40pt;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      font-size: 100pt;
+      margin: 0;
+      font-weight: 300;
+      line-height: 1;
+      opacity: .8;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      margin-top: 20px;
+      font-size: 150pt;
+      font-weight: 300;
+      line-height: 1;
+    }
+  }
 }
 
 

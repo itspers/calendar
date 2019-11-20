@@ -47,8 +47,9 @@ export class CalendarComponent implements OnInit {
       }
     });
 
-    const start = moment().startOf('month').startOf('week');
-    const end = moment().add(1, 'years').startOf('month');
+    // const start = moment().startOf('month').startOf('week');
+    const start = moment(new Date(2021, 0, 1)).startOf('month').startOf('week');
+    const end = moment(start).add(1, 'years').startOf('month');
 
 
     if (((end.clone().diff(start, 'days') / 7) % 2) !== 0) {
