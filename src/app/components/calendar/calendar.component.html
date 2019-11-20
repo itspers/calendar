@@ -1,4 +1,4 @@
-<div class="holder" fxLayout="column" fxLayoutGap="20pt">
+<div class="holder" fxLayout="column" fxLayoutGap="20pt" xmlns="http://www.w3.org/1999/html">
 <!--  <div class="headline">-->
 <!--    <div class="current-year">-->
 <!--      <div class="date">20.</div>-->
@@ -10,7 +10,7 @@
 <!--    </div>-->
 <!--  </div>-->
   <div class="headline-cyrillic">
-    <h2>мой год:</h2>
+    <h2>Это мой год!</h2>
     <h1>2021</h1>
   </div>
   <div fxLayout="row" fxFlex fxLayoutGap="20px">
@@ -25,7 +25,7 @@
       </div>
 
       <div *ngFor="let week of column" fxLayout="row" fxFlex>
-        <div *ngFor="let day of week" fxFlex class="day day-{{day.weekday}} month-day-{{day.monthDay}}" [class.current-year]="day.currentYear">
+        <div *ngFor="let day of week" fxFlex class="day day-{{day.weekday}} month-number-{{day.month}} month-day-{{day.monthDay}}" [class.current-year]="day.currentYear">
           <span class="number">{{day.monthDay}}</span>
           <h3 class="month-name" *ngIf="day.monthDay == 1">{{day.monthName}}</h3>
           <h3 class="month-full-name" *ngIf="day.monthDay == 1">{{day.monthFullName}}</h3>

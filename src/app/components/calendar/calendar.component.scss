@@ -28,11 +28,11 @@
   }
 
   .headline-cyrillic {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Poiret One', sans-serif;
     display: flex;
-    margin-bottom: 90pt !important;
-    margin-top: 40pt;
-    flex-direction: row;
+    //margin-bottom: 90pt !important;
+    //margin-top: 40pt;
+    flex-direction: column;
     align-items: center;
     justify-items: center;
     justify-content: center;
@@ -42,16 +42,22 @@
       margin: 0;
       font-weight: 300;
       line-height: 1;
-      opacity: .5;
+      //opacity: .5;
       text-transform: uppercase;
+      order: 2;
+      position: absolute;
     }
     h1 {
       margin: 0;
-      margin-left: 20px;
+      //margin-left: 20px;
       //margin-top: 20px;
-      font-size: 150pt;
-      font-weight: 300;
+      font-size: 400pt;
+      font-weight: bold;
       line-height: 1;
+      margin-bottom: 20px;
+      color: #898989;
+      opacity: .3;
+      //font-family: 'Arial', sans-serif;
     }
   }
 }
@@ -59,6 +65,19 @@
 
 $gradientStart: #e9e9e9;
 $gradientEnd: #ffffff;
+
+$gradientSpringStart: rgba(189, 193, 146, 0.43);
+$gradientSpringEnd: #fffff6;
+
+$gradientWinterStart: rgba(52, 81, 94, 0.22);
+$gradientWinterEnd: rgba(142, 172, 187, 0.11);
+
+$gradientSummerStart: rgba(203, 190, 83, 0.35);
+$gradientSummerEnd: rgba(255, 255, 228, 0.51);
+
+$gradientAutumnStart: rgba(198, 105, 0, 0.22);
+$gradientAutumnEnd: rgba(255, 201, 71, 0.13);
+
 $steps: 34;
 
 .day {
@@ -92,12 +111,44 @@ $steps: 34;
   }
 
   @for $i from 0 to $steps {
-    &.month-day-#{$i} {
-      background: mix($gradientEnd, $gradientStart, percentage($i / ($steps - 1)));
+
+    // winter
+    &.month-number-1.month-day-#{$i}
+    , &.month-number-2.month-day-#{$i}
+    , &.month-number-12.month-day-#{$i} {
+      background: mix($gradientWinterEnd, $gradientWinterStart, percentage($i / ($steps - 1)));
     }
+
+    // spring
+    &.month-number-3.month-day-#{$i}
+    , &.month-number-4.month-day-#{$i}
+    , &.month-number-5.month-day-#{$i} {
+      background: mix($gradientSpringEnd, $gradientSpringStart, percentage($i / ($steps - 1)));
+    }
+
+    // summer
+    &.month-number-6.month-day-#{$i}
+    , &.month-number-7.month-day-#{$i}
+    , &.month-number-8.month-day-#{$i} {
+      background: mix($gradientSummerEnd, $gradientSummerStart, percentage($i / ($steps - 1)));
+    }
+
+    // autumn
+    &.month-number-9.month-day-#{$i}
+    , &.month-number-10.month-day-#{$i}
+    , &.month-number-11.month-day-#{$i} {
+      background: mix($gradientAutumnEnd, $gradientAutumnStart, percentage($i / ($steps - 1)));
+    }
+
+    //&.month-day-#{$i} {
+    //  background: mix($gradientEnd, $gradientStart, percentage($i / ($steps - 1)));
+    //}
   }
 
   &.month-day-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     //border-top-left-radius: 10px;
   }
 
@@ -113,19 +164,19 @@ $steps: 34;
   }
 
   .month-name {
-
-    left: -5pt;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgb(255, 255, 255);
     margin: 0;
     font-size: 36pt;
-    line-height: 37pt;
+    line-height:1;
     font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: -3px;
   }
 
   .month-full-name {
     color: #636363;
     margin: 0;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 9pt;
   }
 
