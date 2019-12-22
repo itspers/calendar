@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
-
+import * as ru from 'moment/locale/ru';
 
 export interface CalendarDate {
   date: string;
   monthName: string;
   monthFullName: string;
+  month: string;
   monthDay: number;
   weekday: number;
   currentYear: boolean;
@@ -41,20 +42,20 @@ export class CalendarComponent implements OnInit {
 
   calcCalendar() {
 
-    moment.updateLocale('en', <any> {
+    moment.updateLocale('ru', <any> {
       week: {
         dow: 1
       }
     });
 
     // const start = moment().startOf('month').startOf('week');
-    const start = moment(new Date(2021, 0, 1)).startOf('month').startOf('week');
-    const end = moment(start).add(1, 'years').startOf('month');
-
+    const start = moment(new Date(2020, 0, 1)).startOf('month').startOf('week');
+    const end = moment(start).add(1, 'years').endOf('month');
 
     if (((end.clone().diff(start, 'days') / 7) % 2) !== 0) {
-      // end.add(8, 'days');
+      end.add(14, 'days');
     }
+
     const rows: CalendarDate[][] = [];
     let row: CalendarDate[] = [];
     const daysTotal = end.diff(start, 'days');
@@ -66,6 +67,7 @@ export class CalendarComponent implements OnInit {
         monthName: date.format('MMM').substring(0, 1),
         monthFullName: date.format('MMMM'),
         monthDay: date.date(),
+        month: date.format('M'),
         currentYear: date.format('Y') === moment().format('Y')
       });
 
